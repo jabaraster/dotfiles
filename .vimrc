@@ -173,3 +173,6 @@ nnoremap [q :cprevious<CR>   " 前へ
 nnoremap ]q :cnext<CR>       " 次へ
 nnoremap [Q :<C-u>cfirst<CR> " 最初へ
 nnoremap ]Q :<C-u>clast<CR>  " 最後へ
+
+nnoremap <silent> ;; :<C-u>buffers<CR>
+
