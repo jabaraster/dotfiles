@@ -1,45 +1,36 @@
-set nocompatible               " be iMproved
-filetype off                   " required!
+if has('vim_starting')
+   " 初回起動時のみruntimepathにneobundleのパスを指定する
+   set runtimepath+=~/.vim/bundle/neobundle.vim/
+endif
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+" NeoBundleを初期化
+call neobundle#begin(expand('~/.vim/bundle/'))
 
-" let Vundle manage Vundle
-" required! 
-Bundle 'gmarik/vundle'
-Bundle 'molokai'
-Bundle 'git://github.com/dag/vim2hs.git'
-Bundle 'git://github.com/ujihisa/neco-ghc.git'
+" NeoBundle自身を管理下に置く
+NeoBundleFetch 'Shougo/neobundle.vim'
 
-Bundle 'quickrun.vim'
-Bundle 'Markdown'
+" インストールするプラグインをここに記述. 以下は例
+NeoBundleLazy 'Shougo/unite.vim', {
+\   "autoload" : { "filetypes" : [ "html" ] },
+\ }
 
-" Bundle 'http://www.vim.org/scripts/script.php?script_id=362'
-Bundle 'scrooloose/nerdtree'
 
-filetype plugin indent on     " required!
+" NeoBundle初期化の完了
+call neobundle#end()
 
-" http://nanasi.jp/
+filetype plugin indent on
 
-" http://nanasi.jp/articles/howto/config/colorscheme.html
-"colorscheme default
-"colorscheme molokai
+" 起動時に未インストールプラグインをインストールする
+NeoBundleCheck
 
-" 背景色が白に近くないと他のアプリとのコントラストが強すぎて目が疲れる.
-" コメントが見にくいというのもあり、solarizedを導入してみる.
-" http://www.yuuan.net/item/675
-Bundle 'altercation/vim-colors-solarized'
-set t_Co=16
+" ここからはプラグインへの設定を書く.
+" これより上ではまだプラグインがロードされていないのでプラグインへの設定は書けない.
+
+
+
+
+
 set background=light
-let g:solarized_termcolors=16
-colorscheme solarized
-
-
-
-
-" http://blog.blueblack.net/item_110
-"set autoindent
-"set hidden
 set incsearch
 set number
 set clipboard=unnamed
@@ -108,68 +99,3 @@ nnoremap <F4> :grep <cword> ./*
 
 highlight CursorLine cterm=underline ctermfg=NONE ctermbg=NONE
 highlight CursorLine gui=underline guifg=NONE guibg=NONE
-
-" 全角スペース・行末のスペース・タブの可視化
-if has("syntax")
-syntax on
-endif
-
-" podバグ対策
-syn sync fromstart
-
-function! A()
-    :NERDTree<CR>
-endfunction
-
-" function! ActivateInvisibleIndicator()
-" 	syntax match invisiblejisx0208space "　" display containedin=all
-" 	highlight invisiblejisx0208space term=underline ctermbg=blue guibg=darkgray gui=underline
-" 	"syntax match invisibletrailedspace "[ \t]\+$" display containedin=all
-" 	"highlight invisibletrailedspace term=underline ctermbg=red guibg=none gui=undercurl guisp=darkorange
-" 	"syntax match invisibletab "\t" display containedin=all
-" 	"highlight invisibletab term=underline ctermbg=white gui=undercurl guisp=darkslategray
-" 	endf
-" 	augroup invisible
-" 	autocmd! invisible
-" autocmd bufnew,bufread * call ActivateInvisibleIndicator()
-" 	augroup end
-" endif
-
-autocmd BufRead,BufNewFile *.mkd  setfiletype mkd
-autocmd BufRead,BufNewFile *.md  setfiletype mkd
-autocmd BufRead,BufNewFile *.less  setfiletype css
-
-:com! Kwbd let kwbd_bn= bufnr("%")|enew|exe "bdel ".kwbd_bn|unlet kwbd_bn
-
-:set encoding=utf-8
-:set fileencodings=ucs-bom,iso-2022-jp-3,iso-2022-jp,eucjp-ms,euc-jisx0213,euc-jp,sjis,cp932,utf-8
-
-
-""""""""""""""""""""""""""""""
-"ステータスラインに文字コードやBOM、16進表示等表示
-"iconvが使用可能の場合、カーソル上の文字コードをエンコードに応じた表示にするFencB()を使用
-""""""""""""""""""""""""""""""
-if has('iconv')
-  set statusline=%<%f\ %m\ %r%h%w%{'['.(&fenc!=''?&fenc:&enc).(&bomb?':BOM':'').']['.&ff.']'}%=[0x%{FencB()}]\ (%v,%l)/%L%8P\ 
-else
-  set statusline=%<%f\ %m\ %r%h%w%{'['.(&fenc!=''?&fenc:&enc).(&bomb?':BOM':'').']['.&ff.']'}%=\ (%v,%l)/%L%8P\ 
-endif
-
-function! FencB()
-  let c = matchstr(getline('.'), '.', col('.') - 1)
-  let c = iconv(c, &enc, &fenc)
-  return s:Byte2hex(s:Str2byte(c))
-endfunction
-
-function! s:Str2byte(str)
-  return map(range(len(a:str)), 'char2nr(a:str[v:val])')
-endfunction
-
-function! s:Byte2hex(bytes)
-  return join(map(copy(a:bytes), 'printf("%02X", v:val)'), '')
-endfunction
-
-nnoremap [q :cprevious<CR>   " 前へ
-nnoremap ]q :cnext<CR>       " 次へ
-nnoremap [Q :<C-u>cfirst<CR> " 最初へ
-nnoremap ]Q :<C-u>clast<CR>  " 最後へ
