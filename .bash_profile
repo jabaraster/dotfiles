@@ -29,3 +29,7 @@ source '/Users/jabaraster/google-cloud-sdk/path.bash.inc'
 
 # The next line enables bash completion for gcloud.
 source '/Users/jabaraster/google-cloud-sdk/completion.bash.inc'
+
+if [ -f ~/.bashrc ]; then
+    . ~/.bashrc
+fi
