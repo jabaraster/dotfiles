@@ -173,3 +173,5 @@ alias clean="stack clean"
 alias build="stack build"
 alias devel="stack exec -- yesod devel"
 alias ghci="stack ghci"
+
+export PATH=/Applications/apache-maven-3.3.9/bin/:$PATH
