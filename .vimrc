@@ -44,10 +44,6 @@ NeoBundleLazy 'elixir-lang/vim-elixir', {
 \  'autoload': { 'filetypes': ['exs'] },
 \}
 
-NeoBundleLazy 'ryutorion/vim-itunes', {
-\  'autoload': { 'function_prefix': 'itunes' },
-\}
-
 NeoBundleLazy 'itchyny/vim-haskell-sort-import', {
 \  'autoload': { 'commands': 'HaskellSortImport' },
 \}
@@ -67,11 +63,6 @@ noremap <Space>.  :<C-u>edit $MYVIMRC<CR>
 noremap <Space>,  :<C-u>source $MYVIMRC<CR>
 noremap <Space>t :NERDTree<CR>
 noremap <C-d> :bd<CR>
-
-noremap <expr> <Space>ig itunes#play()
-noremap <expr> <Space>ip itunes#pause()
-noremap <expr> <Space>is itunes#stop()
-noremap <expr> <Space>in itunes#next()
 
 set incsearch
 set number
