@@ -77,21 +77,28 @@ set incsearch
 set number
 set clipboard=unnamed
 set tabstop=4
+set shiftwidth=4
+set softtabstop=4
 set list
 set listchars=tab:»-,trail:^,eol:↲,extends:»,precedes:«,nbsp:%
 set showmatch
 set smartcase
 set smartindent
-set guifont=Osaka-Mono:h14
+set guifont=Osaka-Mono:h11
 set ambiwidth=double
 set linespace=2
 set cursorline
 set expandtab
 
+autocmd! FileType html setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd! FileType css setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd! FileType less setlocal shiftwidth=2 tabstop=2 softtabstop=2
+
 "ファイルの上書きの前にバックアップを作る/作らない
 "set writebackupを指定してもオプション 'backup' がオンでない限り、
 "バックアップは上書きに成功した後に削除される。
 set nowritebackup
+set noundofile
 
 "バックアップ/スワップファイルを作成する/しない
 set nobackup
