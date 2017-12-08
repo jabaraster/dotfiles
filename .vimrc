@@ -44,12 +44,12 @@ NeoBundleLazy 'elixir-lang/vim-elixir', {
 \  'autoload': { 'filetypes': ['exs'] },
 \}
 
-NeoBundleLazy 'ryutorion/vim-itunes', {
-\  'autoload': { 'function_prefix': 'itunes' },
+NeoBundleLazy 'udalov/kotlin-vim', {
+\  'autoload': { 'filetypes': ['kt'] },
 \}
 
-NeoBundleLazy 'itchyny/vim-haskell-sort-import', {
-\  'autoload': { 'commands': 'HaskellSortImport' },
+NeoBundleLazy  'nbouscal/vim-stylish-haskell', {
+\  'autoload': { 'filetypes': ['hs'] },
 \}
 
 " NeoBundle設定の終了
@@ -67,11 +67,7 @@ noremap <Space>.  :<C-u>edit $MYVIMRC<CR>
 noremap <Space>,  :<C-u>source $MYVIMRC<CR>
 noremap <Space>t :NERDTree<CR>
 noremap <C-d> :bd<CR>
-
-noremap <expr> <Space>ig itunes#play()
-noremap <expr> <Space>ip itunes#pause()
-noremap <expr> <Space>is itunes#stop()
-noremap <expr> <Space>in itunes#next()
+noremap <Space>s :%!stylish-haskell<CR>
 
 set incsearch
 set number
@@ -82,11 +78,14 @@ set listchars=tab:»-,trail:^,eol:↲,extends:»,precedes:«,nbsp:%
 set showmatch
 set smartcase
 set smartindent
-set guifont=Osaka-Mono:h14
+set guifont=Osaka-Mono:h13
 set ambiwidth=double
 set linespace=2
 set cursorline
 set expandtab
+set shiftwidth=4
+
+autocmd FileType html setlocal sw=2 sts=2 ts=2 et
 
 "ファイルの上書きの前にバックアップを作る/作らない
 "set writebackupを指定してもオプション 'backup' がオンでない限り、
@@ -95,13 +94,14 @@ set nowritebackup
 
 "バックアップ/スワップファイルを作成する/しない
 set nobackup
+set noundofile
 
 " swpファイルを作らない
 set directory=~/.vimswap
 
 " HaskellSortImportをファイル保存時に実行する
 " http://itchyny.hatenablog.com/entry/2016/01/23/190000
-augroup vimrc-haskell-sort-import
-  autocmd!
-  autocmd BufWritePre *.hs HaskellSortImport
-augroup END
+" augroup vimrc-haskell-sort-import
+"   autocmd!
+"   autocmd BufWritePre *.hs HaskellSortImport
+" augroup END

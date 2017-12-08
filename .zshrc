@@ -174,4 +174,12 @@ alias build="stack build"
 alias devel="stack exec -- yesod devel"
 alias ghci="stack ghci"
 
-export PATH=/Applications/apache-maven-3.3.9/bin/:$PATH
+export PATH=~/.local/bin:/Applications/apache-maven-3.3.9/bin/:/opt/local/bin:$PATH
+
+source ~/.nvm/nvm.sh
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/Users/jabaraster/.sdkman"
+[[ -s "/Users/jabaraster/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/jabaraster/.sdkman/bin/sdkman-init.sh"
+
+source ~/.cargo/env
