@@ -9,6 +9,10 @@ endif
 " NeoBundle設定の開始
 call neobundle#begin(expand('/Users/jabaraster/.vim/bundle'))
 
+" 自動保存
+NeoBundle 'vim-scripts/vim-auto-save'
+let g:auto_save = 1
+
 " NeoBundleのバージョンをNeoBundle自身で管理する
 NeoBundleFetch 'Shougo/neobundle.vim'
 
@@ -44,8 +48,12 @@ NeoBundleLazy 'elixir-lang/vim-elixir', {
 \  'autoload': { 'filetypes': ['exs'] },
 \}
 
-NeoBundleLazy 'itchyny/vim-haskell-sort-import', {
-\  'autoload': { 'commands': 'HaskellSortImport' },
+NeoBundleLazy 'nbouscal/vim-stylish-haskell', {
+\  'autoload': { 'filetypes': ['hs'] },
+\}
+
+NeoBundleLazy 'frigoeu/psc-ide-vim', {
+\  'autoload': { 'filetypes': ['purs'] },
 \}
 
 " NeoBundle設定の終了
@@ -62,6 +70,7 @@ noremap : ;
 noremap <Space>.  :<C-u>edit $MYVIMRC<CR>
 noremap <Space>,  :<C-u>source $MYVIMRC<CR>
 noremap <Space>t :NERDTree<CR>
+noremap <Space>s :%!stylish-haskell<CR>
 noremap <C-d> :bd<CR>
 
 set incsearch
@@ -84,6 +93,7 @@ set expandtab
 autocmd! FileType html setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd! FileType css setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd! FileType less setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd BufNewFile,BufRead *.purs setfiletype haskell
 
 "ファイルの上書きの前にバックアップを作る/作らない
 "set writebackupを指定してもオプション 'backup' がオンでない限り、
@@ -96,10 +106,3 @@ set nobackup
 
 " swpファイルを作らない
 set directory=~/.vimswap
-
-" HaskellSortImportをファイル保存時に実行する
-" http://itchyny.hatenablog.com/entry/2016/01/23/190000
-augroup vimrc-haskell-sort-import
-  autocmd!
-  autocmd BufWritePre *.hs HaskellSortImport
-augroup END
