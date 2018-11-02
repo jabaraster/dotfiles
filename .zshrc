@@ -175,7 +175,6 @@ alias clean="stack clean"
 alias build="stack build"
 alias devel="stack exec -- yesod devel"
 alias ghci="stack ghci"
-alias sl="serverless"
 
 export M3_HOME=/Applications/apache-maven/apache-maven-3.3.9
 M3=$M3_HOME/bin
@@ -201,3 +200,13 @@ export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
 # nodebrewのための設定
 export PATH=$HOME/.nodebrew/current/bin:$PATH
+
+export PATH=~/.local/bin:/Applications/apache-maven-3.3.9/bin/:/opt/local/bin:$PATH
+
+source ~/.nvm/nvm.sh
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/Users/jabaraster/.sdkman"
+[[ -s "/Users/jabaraster/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/jabaraster/.sdkman/bin/sdkman-init.sh"
+
+source ~/.cargo/env
