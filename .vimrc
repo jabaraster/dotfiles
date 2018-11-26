@@ -56,9 +56,11 @@ NeoBundleLazy 'udalov/kotlin-vim', {
 \  'autoload': { 'filetypes': ['kt'] },
 \}
 
-NeoBundleLazy  'nbouscal/vim-stylish-haskell', {
+NeoBundleLazy 'nbouscal/vim-stylish-haskell', {
 \  'autoload': { 'filetypes': ['hs'] },
 \}
+
+NeoBundle 'leafgarland/typescript-vim'
 
 " NeoBundle設定の終了
 call neobundle#end()

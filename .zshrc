@@ -168,6 +168,7 @@ esac
 
 # custom aliases
 alias gs="git status --short --branch"
+alias gb="git branch"
 alias gd='git diff'
 alias gc='git commit -m "mainte."'
 alias gl='git log --oneline --graph'
