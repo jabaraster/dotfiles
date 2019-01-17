@@ -20,6 +20,10 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 " 下記は unite.vimというプラグインをインストールする例
 NeoBundle 'Shougo/unite.vim'
 
+NeoBundleLazy 'elmcast/elm-vim', {
+\  'autoload': { 'filetypes': ['elm'] },
+\}
+
 NeoBundleLazy 'Shougo/vimshell.vim', {
 \  'autoload': { 'commands': ['VimShell'] }
 \}

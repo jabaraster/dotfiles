@@ -1,0 +1,11 @@
+{
+    "files.autoSave": "afterDelay",
+    "terminal.integrated.copyOnSelection": true,
+    "vim.useSystemClipboard": true,
+    "editor.tabSize": 2,
+    "[elm]":  {
+        "editor.tabSize": 2
+    }
+    "editor.detectIndentation": true,
+    "editor.renderWhitespace": "boundary"
+}
