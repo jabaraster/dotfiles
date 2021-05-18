@@ -16,6 +16,12 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 " 下記は unite.vimというプラグインをインストールする例
 NeoBundle 'Shougo/unite.vim'
 
+NeoBundle 'vim-scripts/vim-auto-save'
+let g:auto_save = 1
+
+NeoBundle 'leafgarland/typescript-vim'
+NeoBundle 'clausreinke/typescript-tools'
+
 NeoBundleLazy 'Shougo/vimshell.vim', {
 \  'autoload': { 'commands': ['VimShell'] }
 \}
@@ -52,6 +58,8 @@ NeoBundleLazy  'nbouscal/vim-stylish-haskell', {
 \  'autoload': { 'filetypes': ['hs'] },
 \}
 
+NeoBundle "frigoeu/psc-ide-vim"
+
 " NeoBundle設定の終了
 call neobundle#end()
 
@@ -86,6 +94,7 @@ set expandtab
 set shiftwidth=4
 
 autocmd FileType html setlocal sw=2 sts=2 ts=2 et
+autocmd BufNewFile,BufRead *.purs setf haskell
 
 "ファイルの上書きの前にバックアップを作る/作らない
 "set writebackupを指定してもオプション 'backup' がオンでない限り、

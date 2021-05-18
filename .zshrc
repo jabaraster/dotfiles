@@ -169,12 +169,13 @@ esac
 # custom aliases
 alias gs="git status --short --branch"
 alias gc='git commit -m "mainte."'
+alias gl='git log --graph --oneline'
 alias clean="stack clean"
 alias build="stack build"
 alias devel="stack exec -- yesod devel"
 alias ghci="stack ghci"
 
-export PATH=~/.local/bin:/Applications/apache-maven-3.3.9/bin/:/opt/local/bin:$PATH
+export PATH=~/.npm-global/bin/:~/.local/bin:/Applications/apache-maven-3.3.9/bin/:/opt/local/bin:$PATH
 
 source ~/.nvm/nvm.sh
 
@@ -183,3 +184,24 @@ export SDKMAN_DIR="/Users/jabaraster/.sdkman"
 [[ -s "/Users/jabaraster/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/jabaraster/.sdkman/bin/sdkman-init.sh"
 
 source ~/.cargo/env
+
+# tabtab source for serverless package
+# uninstall by removing these lines or running `tabtab uninstall serverless`
+[[ -f /Users/jabaraster/Develop/Haskell/mypackage/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh ]] && . /Users/jabaraster/Develop/Haskell/mypackage/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh
+# tabtab source for sls package
+# uninstall by removing these lines or running `tabtab uninstall sls`
+[[ -f /Users/jabaraster/Develop/Haskell/mypackage/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh ]] && . /Users/jabaraster/Develop/Haskell/mypackage/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh
+
+# tabtab source for slss package
+# uninstall by removing these lines or running `tabtab uninstall slss`
+[[ -f /Users/jabaraster/.npm-global/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh ]] && . /Users/jabaraster/.npm-global/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh
+
+# pyenvの設定
+export LDFLAGS="-L/usr/local/opt/readline/lib"
+export CPPFLAGS="-I/usr/local/opt/readline/include"
+export PKG_CONFIG_PATH="/usr/local/opt/readline/lib/pkgconfig"
+
+eval "$(pyenv init -)"
+
+# nodebrewの設定
+export PATH=$PATH:/Users/jabaraster/.nodebrew/current/bin
