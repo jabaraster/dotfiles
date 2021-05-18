@@ -9,6 +9,10 @@ endif
 " NeoBundle設定の開始
 call neobundle#begin(expand('/Users/jabaraster/.vim/bundle'))
 
+" 自動保存
+NeoBundle 'vim-scripts/vim-auto-save'
+let g:auto_save = 1
+
 " NeoBundleのバージョンをNeoBundle自身で管理する
 NeoBundleFetch 'Shougo/neobundle.vim'
 
@@ -21,6 +25,9 @@ let g:auto_save = 1
 
 NeoBundle 'leafgarland/typescript-vim'
 NeoBundle 'clausreinke/typescript-tools'
+NeoBundleLazy 'elmcast/elm-vim', {
+\  'autoload': { 'filetypes': ['elm'] },
+\}
 
 NeoBundleLazy 'Shougo/vimshell.vim', {
 \  'autoload': { 'commands': ['VimShell'] }
@@ -50,15 +57,20 @@ NeoBundleLazy 'elixir-lang/vim-elixir', {
 \  'autoload': { 'filetypes': ['exs'] },
 \}
 
+NeoBundleLazy 'frigoeu/psc-ide-vim', {
+\  'autoload': { 'filetypes': ['purs'] },
+\}
+
 NeoBundleLazy 'udalov/kotlin-vim', {
 \  'autoload': { 'filetypes': ['kt'] },
 \}
 
-NeoBundleLazy  'nbouscal/vim-stylish-haskell', {
+NeoBundleLazy 'nbouscal/vim-stylish-haskell', {
 \  'autoload': { 'filetypes': ['hs'] },
 \}
 
 NeoBundle "frigoeu/psc-ide-vim"
+NeoBundle 'leafgarland/typescript-vim'
 
 " NeoBundle設定の終了
 call neobundle#end()
@@ -74,6 +86,7 @@ noremap : ;
 noremap <Space>.  :<C-u>edit $MYVIMRC<CR>
 noremap <Space>,  :<C-u>source $MYVIMRC<CR>
 noremap <Space>t :NERDTree<CR>
+noremap <Space>s :%!stylish-haskell<CR>
 noremap <C-d> :bd<CR>
 noremap <Space>s :%!stylish-haskell<CR>
 
@@ -81,12 +94,14 @@ set incsearch
 set number
 set clipboard=unnamed
 set tabstop=4
+set shiftwidth=4
+set softtabstop=4
 set list
 set listchars=tab:»-,trail:^,eol:↲,extends:»,precedes:«,nbsp:%
 set showmatch
 set smartcase
 set smartindent
-set guifont=Osaka-Mono:h13
+set guifont=Osaka-Mono:h11
 set ambiwidth=double
 set linespace=2
 set cursorline
@@ -96,10 +111,16 @@ set shiftwidth=4
 autocmd FileType html setlocal sw=2 sts=2 ts=2 et
 autocmd BufNewFile,BufRead *.purs setf haskell
 
+autocmd! FileType html setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd! FileType css setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd! FileType less setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd BufNewFile,BufRead *.purs setfiletype haskell
+
 "ファイルの上書きの前にバックアップを作る/作らない
 "set writebackupを指定してもオプション 'backup' がオンでない限り、
 "バックアップは上書きに成功した後に削除される。
 set nowritebackup
+set noundofile
 
 "バックアップ/スワップファイルを作成する/しない
 set nobackup

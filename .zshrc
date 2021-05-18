@@ -168,6 +168,8 @@ esac
 
 # custom aliases
 alias gs="git status --short --branch"
+alias gb="git branch"
+alias gd='git diff'
 alias gc='git commit -m "mainte."'
 alias gl='git log --graph --oneline'
 alias clean="stack clean"
@@ -176,6 +178,32 @@ alias devel="stack exec -- yesod devel"
 alias ghci="stack ghci"
 
 export PATH=~/.npm-global/bin/:~/.local/bin:/Applications/apache-maven-3.3.9/bin/:/opt/local/bin:$PATH
+export M3_HOME=/Applications/apache-maven/apache-maven-3.3.9
+M3=$M3_HOME/bin
+export PATH=~/.local/bin:~/go/bin:$M3:$PATH
+export PATH="$HOME/.npm-global/bin:$PATH"
+
+source ~/.nvm/nvm.sh
+
+source ~/.cargo/env
+
+
+# tabtab source for serverless package
+# uninstall by removing these lines or running `tabtab uninstall serverless`
+[[ -f /Users/jabaraster/.nvm/versions/node/v4.6.0/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh ]] && . /Users/jabaraster/.nvm/versions/node/v4.6.0/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh
+# tabtab source for sls package
+# uninstall by removing these lines or running `tabtab uninstall sls`
+[[ -f /Users/jabaraster/.nvm/versions/node/v4.6.0/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh ]] && . /Users/jabaraster/.nvm/versions/node/v4.6.0/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh
+
+# Golangのための設定
+export GOROOT=/usr/local/opt/go/libexec
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+
+# nodebrewのための設定
+export PATH=$HOME/.nodebrew/current/bin:$PATH
+
+export PATH=~/.local/bin:/Applications/apache-maven-3.3.9/bin/:/opt/local/bin:$PATH
 
 source ~/.nvm/nvm.sh
 
